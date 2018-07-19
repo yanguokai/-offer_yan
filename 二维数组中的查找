@@ -1,1 +1,45 @@
- 
+# -*- coding:utf-8 -*-
+class Solution:
+    # array 二维列表
+    def Find(self, target, array):
+        # write code here
+        
+        #python中二维数组表示方法
+        #获取二维列表的长度
+        if not array:
+            return False
+        hight = len(array)
+        width = len(array[0])
+
+        '''
+        for i in range(hight-1):
+            for j in range(width-1):
+                if target==array
+        '''
+        '''
+        存在的问题，
+        1。运行时间过长，或者是while循环出错
+        第二个j的判断不需要使用while循环
+        需要在条件不满足的时候就进行退出
+        2.代码考虑的不全，测试率低 不通过
+        '''
+        j = width - 1
+        #应该用谁来遍历，什么时候能够确定失败退出
+        i = 0
+        #一直有错误率的原因是写的是range的for循环，一开始是hight-1 后面改为hight也没有用，才发现是python2.7可能用法不一样
+        #for i in range(hight):
+        while i<=hight-1:
+            if j>=0:
+                if target==array[i][j]:
+                    return True
+                elif target<array[i][j]:
+                    j-=1
+                else:
+                    i+=1
+            else:
+                break
+        return False 
+
+运行时间：369ms
+
+占用内存：5728k
