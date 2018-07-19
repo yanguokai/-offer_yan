@@ -1,0 +1,54 @@
+运行时间：79ms
+
+占用内存：6092k
+
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回构造的TreeNode根节点
+    def reConstructBinaryTree(self, pre, tin):
+        # write code here
+        
+        #pre tin 应该是以列表的形式存储的啊
+        #手动重建二叉树还是比较简单，代码关键的地方在于判断停止？
+        #不需要先这样声明
+        #lchild_pre = []
+        #rchild_pre = []
+        #lchild_tin = []
+        #rchild_tin = []
+        #理论上root是pre的第一个
+        if len(pre)==0:
+        #如果是 if not pre:时间会变成60
+            return None    
+        #一开始还没有想到是构建一个root结点
+        root =  TreeNode(pre[0])
+
+        print(root.val)
+        #去中序遍历列表中去匹配根结点，划分左右子树
+        #可以直接列表的index就行 排除了不存在，所以一定存在的index
+        root_i = tin.index(root.val)
+        #lchild_tin = tin[:root_i-1]
+        #rchild_tin = tin[root_i+1:]
+        
+        #lchild_pre = pre[1:root_i]
+        #rchild_pre = pre[root_i+1:]
+        #应该是划分错了一个偏移量，就是对切片的操作不熟悉 [:3] 表示的是下标是0,1,2 而 [1:3] 下标表示的是1,2
+        
+        lchild_tin = tin[:root_i]
+        rchild_tin = tin[root_i+1:]
+        
+        lchild_pre = pre[1:root_i+1]#长度为root_i所以整体上在1的基础上偏移这个量
+        rchild_pre = pre[root_i+1:]
+        
+        #划分完全了，现在可以分别遍历左右子树了
+        root.left = self.reConstructBinaryTree(lchild_pre,lchild_tin)
+        root.right = self.reConstructBinaryTree(rchild_pre,rchild_tin)
+        
+        return root
+        
+        
+        
