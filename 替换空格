@@ -1,0 +1,42 @@
+运行时间：30ms
+
+占用内存：5732k
+
+# -*- coding:utf-8 -*-
+class Solution:
+    # s 源字符串
+    def replaceSpace(self, s):
+        # write code here
+        #考虑为空的情况
+        if not s:
+            return ""
+        #替换空格会导致原来空格的长度变换，使得元素后移
+        #如果是一开始知道有多少个空格，然后申请最后的空间，从后面插入就不会移动
+        space = 0
+        for item in s:
+            if item == " ":
+                space += 1
+                
+        maxlength = space * 2 + len(s)
+        
+        i = len(s)-1
+        index = maxlength - 1
+        #应该是申请一个新的空间
+        new_s = [""]*maxlength
+        while i>=0:
+            if s[i]!=" ":
+                new_s[index] = s[i]
+                index -=1
+                i-=1
+            else:
+                #'str' object does not support item assignment
+                new_s[index-2:index] ="%20"  #%20应该如果直接输出
+                #new_s[index]="0"
+                #new_s[index-1]="2"
+                #new_s[index-2]='%'
+                index -= 3 #原来是这个地方以前-2了,还以为%一直输不出来
+                i-=1
+        return "".join(new_s)
+                
+                
+        
