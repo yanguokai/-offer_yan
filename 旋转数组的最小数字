@@ -5,3 +5,39 @@ class Solution:
         if not rotateArray:
             return 0
         return min(rotateArray)
+
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        if not rotateArray:
+            return 0
+        #能不能直接使用自带的内置函数
+        #return min(rotateArray)
+        high = len(rotateArray)-1
+        low = 0
+        
+        while rotateArray[low]>=rotateArray[high]:
+            if high - low ==1:
+                return rotateArray[high]
+            mid = (low + high)//2
+            if rotateArray[low]<=rotateArray[mid]:
+                low = mid
+            elif rotateArray[mid]<=rotateArray[high]:
+                high = mid
+                
+        #一开始的最小值应该如何初始化
+        #flag = rotateArray[low]
+        #旋转之后一定有a[low]>=a[high],所以知道了一个
+        #while low<=high:
+            #mid = (low + high)//2
+            
+            #if rotateArray[mid]==rotateArray[low]:
+                #return rotateArray[low]
+            #elif rotateArray[mid]>rotateArray[high]:
+                #说明出现逆转
+                #low = mid + 1
+                #self.minNumberInRotateArray(rotateArray[low:high+1])#切片表示需要加1
+            #elif rotateArray[mid]<rotateArray[low]
+            
