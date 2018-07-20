@@ -1,0 +1,27 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def jumpFloor(self, number):
+        # write code here
+        fib = [1,2]
+        if number==1:
+            return fib[0]
+        if number==2:
+            return fib[1]
+        i = 3
+        fib_temp = 0
+        while i <=number:
+            fib_temp = fib[0] + fib[1]
+            fib[0] = fib[1]
+            fib[1] = fib_temp
+            i += 1
+        return fib_temp
+        #number >2 
+        #第一次跳1级台阶  剩余台阶数 n-1
+        
+        
+        
+        
+        #第一次跳2级台阶   剩余台阶数 n-2
+        
+        
+        
