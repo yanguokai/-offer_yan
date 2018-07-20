@@ -1,0 +1,27 @@
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def FindKthToTail(self, head, k):
+        # write code here
+        #遍历一遍获取连边长度
+        if not head:
+            return None
+        p = head
+        length = 1#这个时候应该是从1开始的，就是这里的问题，原来设置为0
+        while p.next:
+            length +=1
+            p = p.next
+        print length
+        if length < k:
+            return None
+        #if length == k:
+           # return head
+        q = head 
+        for i in range(length-k):#因为q往后移动了一次，所以
+            q = q.next
+        return q
+            
