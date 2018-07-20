@@ -1,0 +1,10 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Power(self, base, exponent):
+        # write code here
+        #下面这两个方法可以直接获取得到n次方
+        return base**exponent
+        #return pow(base,exponent)
+        
+        #但是不会这么简单吧
+        #牛客网没有规定不能使用库函数，但是其他的地方应该是限制使用的
