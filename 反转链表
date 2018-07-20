@@ -1,0 +1,27 @@
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+        # write code here
+        
+        p_Cur = pHead
+        p_Pre = None  #不是创建一个新的结点ListNode(-1)
+        p_Next = None
+        
+        while p_Cur:
+            p_Next = p_Cur.next
+            p_Cur.next = p_Pre
+            
+            if p_Next==None:
+                pHead = p_Cur
+            #如果退出循环后，p_Cur也就是p_Cur.next 为None了
+            p_Pre = p_Cur
+            p_Cur = p_Next
+            
+        #w为什么不可以在这里令pHead = p_Pre?
+        #{5,4,3,2,1,-1} 怎么会多出来一个？
+        return pHead
