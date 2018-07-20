@@ -1,0 +1,12 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def jumpFloorII(self, number):
+        # write code here
+        if number <= 0:
+            return 0
+        else:
+            #f(n) = f(n-1)+f(n-2)+...+f(1)
+            #f(n-1) = f(n-2)+f(n-3)+...+f(1)
+            #...
+            #f(2) = f(1)
+            return pow(2,number-1)
