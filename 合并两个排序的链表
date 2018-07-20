@@ -1,0 +1,35 @@
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回合并后列表
+    def Merge(self, pHead1, pHead2):
+        # write code here
+        if not pHead1:
+            return pHead2
+        elif not pHead2:
+            return pHead1
+        
+        p1 = pHead1
+        p2 = pHead2
+        #L = None  #L应该定义的是一个链表结点  'NoneType' object has no attribute 'next'
+        #L = ListNode(-1)
+        L = ListNode(None) #ListNode(None)  #python如何定义一个头结点
+        q = L
+        while p1 and p2:
+            if p1.val <= p2.val:
+                q.next = p1
+                p1 = p1.next
+            else:
+                q.next = p2
+                p2 = p2.next
+            q = q.next
+        #出现链表完成，直接将另外一个链表添加到后面就形
+        if p1:
+            q.next = p1
+        else:
+            q.next = p2
+            
+        return L.next  #在这里花了一点时间，一开始定义的是一个val为-1的结点，发现多了一个-1，然后直接定义为None直接失败，让它等于p会运行失败，返回的是要第一个有值的结点
