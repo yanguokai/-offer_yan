@@ -1,0 +1,31 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        #在正确的情况下 要考虑时间和空间复杂度，也就是说需要优化
+        #这题当然不能够直接的去使用递归方法求解
+        #if n <=0:
+         #   return 0
+        #if n==1:
+         #   return 1
+        #return self.Fibonacci(n-1)+self.Fibonacci(n-2)
+        #运行超时:您的程序未能在规定时间内运行结束，请检查是否循环有错或算法复杂度过大。
+        
+        #递归从n-to-1
+        #直接从1-to-n
+        f_n = [0,1]
+        if n<=0:
+            return f_n[0]
+        if n==1:
+            return f_n[1]
+        i = 2
+        fib = 0
+        while i <=n:  #  i是否取到n
+            fib = f_n[0] + f_n[1]
+            
+            f_n[0] = f_n[1]
+            f_n[1] = fib
+            
+            i +=1
+            
+        return fib
