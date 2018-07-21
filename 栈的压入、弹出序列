@@ -1,0 +1,34 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        # write code here
+        stackA = []
+        stackB = []
+        if not pushV:
+            return False
+        if not popV:
+            return False
+        index_V = 0
+        length = len(popV)
+        while index_V <= length-1:
+            
+            if not stackA or popV[index_V]!=stackA[-1]:
+                if pushV and popV[index_V] in pushV:  
+                #缺少了一个是否元素存在的判断，所以就出错了，以为在其他地方判断就行，但是不知道判断什么
+                    for item in pushV:
+                        stackA.append(item)
+                        pushV.remove(item)
+                        if item == popV[index_V]:
+                            break
+                else:
+                    return False
+            if popV[index_V]==stackA[-1]:
+                stackB.append(stackA[-1])
+                stackA.pop()
+            index_V += 1
+        #if stackB != popV:
+            #return False
+
+        return True
+            
+        
