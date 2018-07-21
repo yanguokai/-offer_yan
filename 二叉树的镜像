@@ -1,0 +1,23 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回镜像树的根节点
+    def Mirror(self, root):
+        # write code here
+        #一开始忘记not root 是空了 写了一个not root 然后一直没有转换
+        if root:  
+            #交换左左右子树
+            root.left,root.right = root.right,root.left
+            self.Mirror(root.left)
+            self.Mirror(root.right)
+        else:
+            return
+        
+        
+
+        
+        
