@@ -1,0 +1,55 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def VerifySquenceOfBST(self, sequence):
+        # write code here
+         # write code here
+        length = len(sequence)
+        if length == 0:
+            return False
+        if length == 1:
+            return True
+        root = sequence[-1]
+        left = 0
+        while sequence[left] < root:
+                left += 1
+        for j in range(left, length-1):
+            if sequence[j] < root:
+                return False
+        return self.VerifySquenceOfBST(sequence[:left]) or self.VerifySquenceOfBST(sequence[left:length-1])
+        
+        
+        
+        # -*- coding:utf-8 -*-
+#这下面自己写的，总是因为一点问题导致出错，然后还不知道错误再哪，找其他的地方的错误，所以耽误很多时间
+class Solution:
+    def VerifySquenceOfBST(self, sequence):
+        # write code here
+        if not sequence:
+            #return "No"
+            return False
+        if len(sequence)==1:
+            return True
+         
+        root = sequence[-1]
+        length = len(sequence)
+        i = 0
+        while i < len(sequence)-1:
+            if sequence[i] > root:
+                break
+            i += 1
+        #就是因为这里我写了一个while？ 从j=i开始 j自增？
+        #for j in range(i,length-1):
+        j = i
+        while j < length-1:
+            if sequence[j] < root:
+                return False
+            j += 1  #是忘记j自增了，导致的循环一直没有退出
+            
+        left = True
+        right = True
+        if i > 0:
+            left = self.VerifySquenceOfBST(sequence[:i])
+        if i < len(sequence)-1:
+            right = self.VerifySquenceOfBST(sequence[i:len(sequence)-1])
+        return left and right  #哪最后到底是and 还是or？
+        
