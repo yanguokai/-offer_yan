@@ -12,7 +12,8 @@ class Solution:
         que_list = []
         result = []
         if not root:
-            return False
+            #return False
+            return []  #是因为这里没有返回一个空的list，报错的，我怎么知道返回什么？
 
             #que_list.insert(0,root)
         que_list.append(root)
