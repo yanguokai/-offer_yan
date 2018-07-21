@@ -1,0 +1,54 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    #首先需要一个构造函数
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+    #然后实现栈的数据结构
+    def push(self, node):
+        # write code here
+        #利用列表方法实现栈
+        self.stack.append(node)
+        #如果min_stack 为空，就直接压入node ，就是缺少了一个为空的判断，我一开始是直接判断self.min_stack[-1]<=node 压入self.min_stack[-1]
+        if not self.min_stack or node < self.min_stack[-1]:
+            self.min_stack.append(node)
+        else:
+            self.min_stack.append(self.min_stack[-1])
+        
+            
+        
+    def pop(self):
+        # write code here
+        #if not self.stack:
+            #return False
+        if self.stack:
+            self.stack.pop()
+            self.min_stack.pop()
+            
+    def top(self):
+        # write code here
+        #if not self.stack:
+            #return False
+        #不用返回空的时候为false的值？空的时候也是stack[-1]？是一样的，所以不需要判断也可以。但是如果添加了一个为空的判断，然后还没返回什么结果不就是报错了，但是没有错啊
+        #是不是not 不是判空的？
+        #if self.stack:
+            #return self.stack[-1]
+        return self.stack[-1]
+    def min(self):
+        #if self.min_stack:
+            #return self.min_stack[-1]
+        return self.min_stack[-1]
+        # write code here
+        #minFlag = self.top()
+        
+        #if self.pop():
+            #if minFlag > self.top():
+                #minFlag = self.top
+        #return minFlag
+        #挨个出栈比较，获取最小值？
+        
+        #测试用例是啥 都没看懂啊["PSH3","MIN","PSH4","MIN","PSH2","MIN","PSH3","MIN",
+        #"POP","MIN","POP","MIN","POP","MIN","PSH0","MIN"]
+        
+        #一个栈不行，就添加一个辅助栈，用于每次保存最小值
+        
