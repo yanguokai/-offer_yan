@@ -1,0 +1,21 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def FirstNotRepeatingChar(self, s):
+        # write code here
+        hashmap = {}
+        maxIndex = 20000
+        if not s:
+            return -1
+        for item in s:
+            if item not in hashmap:
+                hashmap[item] = 1  
+            else:
+                hashmap[item] += 1 
+                
+        for i in range(len(s)):
+            if hashmap[s[i]]==1:
+                return i
+        return -1
+            
+        
+            
