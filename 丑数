@@ -1,0 +1,29 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def GetUglyNumber_Solution(self, index):
+        # write code here
+        ugly = [1]
+        
+        if index <=0:
+            return 0
+
+        m2 = 0
+        m3 = 0
+        m5 = 0
+        
+        for i in range(index-1): #index 为数字 为什么要减1 是要生成index这个丑数，所以一开始没有
+            newUgly = min (ugly[m2]*2,ugly[m3]*3,ugly[m5]*5)
+            
+            ugly.append(newUgly)
+            
+            if newUgly % 2 == 0:
+                m2 += 1
+            if newUgly % 3 == 0:
+                m3 += 1
+            if newUgly % 5 == 0:
+                m5 += 1
+                
+        return ugly[index - 1]
+            
+        
+        
