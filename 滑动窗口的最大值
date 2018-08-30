@@ -1,0 +1,13 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def maxInWindows(self, num, size):
+        # write code here
+        if not num:
+            return []
+        if size <=0:
+            return []
+        result = []
+        for i in range(len(num)-size+1):
+            result.append(max(num[i:i+size])) #主要是python中内置的列表和max函数比较强大
+        return result
+            
