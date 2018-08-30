@@ -1,0 +1,40 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    flag = -1
+    def Serialize(self, root):
+        # write code here
+        #最后返回的是字符串，一开始需要初始化，所以不能直接作为递归函数
+        s = ""
+        s = self.RSerialize(root)
+        return s
+        
+    def RSerialize(self,root):
+        #s的作用是什么，刚开始进来的时候都重新赋值了啊 
+        if not root:
+            #print "$,"
+            s = "$,"
+            return s
+        s = str(root.val)+","
+        s_left = self.RSerialize(root.left)
+        s_right = self.RSerialize(root.right)
+        #return s+s_left+s_right
+        s += s_left + s_right
+        return s
+    
+    def Deserialize(self, s):
+        # write code here
+        self.flag +=1
+        items = s.split(",")  #每次都需要切分一次，没这个必要其实
+        if self.flag >= len(items):
+            return None
+        root = None
+        if items[self.flag]!="$":
+            root = TreeNode(int(items[self.flag]))
+            root.left = self.Deserialize(s)
+            root.right = self.Deserialize(s)
+        return root
