@@ -1,0 +1,69 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+
+    # 返回二维列表，内部每个列表表示找到的路径
+    def FindPath(self, root, expectNumber):
+        # write code here
+        if not root :
+            return []
+        stackPath = []
+        result = []
+        sumNumber = 0
+        # 这样定义为全局变量 ，能通过参数改变吗？
+        self.RFindPath(root,expectNumber,stackPath,result,sumNumber)
+        return result
+        
+    def RFindPath(self,root,expectNumber,stackPath,result,sumNumber):
+        #不存在root 为None的情况
+        #访问结点
+        #这个是不是应该添加的是值啊，而不是root结点
+        
+        stackPath.append(root.val)
+        sumNumber += root.val
+        
+        if self.isLeaf(root):
+            if sumNumber == expectNumber:
+                result.append(stackPath)
+                #这个也不是说需要返回result
+                #return result 
+            #else:
+                #是叶子时，但是和不等于给出的值
+                #stackPath.pop()
+                #sumNumber -= root.val
+            stackPath.pop()
+            sumNumber -= root.val
+            
+            #是叶子结点的时候，应该退出当前调用
+            return 
+        #这里错了，当是叶子的时候，不管等于还是不等于，都是需要叶子结点出栈，并减去值，只是需要添加到
+        #路径中的问题
+        
+        else:
+            #当前结点不是叶子结点时，就递归调用访问左右子结点
+            #需不需要先判断左右是否存在再递归调用呢？ 返回的都是什么？
+            
+            #是不是这些参数没有改变？
+            if root.left:
+                self.RFindPath(root.left,expectNumber,stackPath,result,sumNumber)
+            if root.right:
+                self.RFindPath(root.right,expectNumber,stackPath,result,sumNumber)
+                
+
+    def isLeaf(self,root):
+
+        if root and not root.left and not root.right:  
+            return True
+        else:
+            return False
+            
+    #有两个问题，不知道返回的是什么，而且结果返回的是错误的答案。           
+            
+            
+            
+            
+            
